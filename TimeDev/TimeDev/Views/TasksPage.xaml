@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TimeDev.Views.TasksPage"
+             xmlns:views="clr-namespace:TimeDev.Views"
+             Title="{Binding Title}"
+             xmlns:vm="clr-namespace:TimeDev.ViewModels"  
+             xmlns:convert="clr-namespace:TimeDev.Converters"
+             xmlns:model="clr-namespace:TimeDev.Models"
+             x:DataType="vm:TasksViewModel"
+             BackgroundColor="{DynamicResource PageBackgroundColor}"
+             >
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <convert:TimeSpanToStringConverter x:Key="timeConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Spacing="0" Margin=" 10" >
+            <views:TimerView x:Name="MyTimer" SaveTimeEvent="TimerView_SaveTimeEvent">
+            </views:TimerView>
+            <Frame OutlineColor="Black" Padding="5">
+                <Label x:Name="TaskStatusLabel" Text="{Binding}" HorizontalTextAlignment="Center"/>
+            </Frame>
+            <Frame Padding="8" OutlineColor="Black">
+                <Picker ItemsSource="{Binding}" />
+            </Frame>
+            <Label x:Name="TimeLabel" Text="{Binding SelectedItem}"/>
+            <Frame Padding="8" OutlineColor="Gray">
+                <RefreshView Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+                    <CollectionView x:Name="ItemsListView"
+                                    ItemsSource="{Binding Items}"
+                                    SelectionMode="Single">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame Padding="0" Margin="0" BorderColor="Gray" CornerRadius="5">
+                                    <FlexLayout Padding="5" x:DataType="model:TaskLocal" Direction="Row" JustifyContent="SpaceAround" AlignItems="Center">
+                                        <Label Text="{Binding TaskType}" FlexLayout.Basis="10%"/>
+                                        <Label Text="{Binding Id}"  FlexLayout.Basis="10%"/>
+                                        <Label Text="{Binding Description}"  FlexLayout.Basis="59%" LineBreakMode="WordWrap"/>
+                                        <Label Text="{Binding Duration, Converter={StaticResource timeConverter}}"  FlexLayout.Basis="18%" HorizontalTextAlignment="End"/>
+                                        <FlexLayout.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                NumberOfTapsRequired="2"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:TasksViewModel}}, Path=ItemTapped}"
+                                                CommandParameter="{Binding .}">
+                                            </TapGestureRecognizer>
+                                        </FlexLayout.GestureRecognizers>
+                                    </FlexLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </RefreshView>
+            </Frame>
+            <Button Text="Save" Command="{Binding SaveChangesCommand}"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

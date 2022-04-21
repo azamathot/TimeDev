@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TimeDev.Views.TrackerSettingsPage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}"
+             xmlns:vm="clr-namespace:TimeDev.ViewModels" 
+             xmlns:model="clr-namespace:TimeDev.Models" 
+             x:DataType="vm:TrackerSettingsViewModel"
+             >
+    <ContentPage.Content>
+        <Grid Margin="10" Padding=" 10">
+            <StackLayout Padding="9" VerticalOptions="Start">
+                <FlexLayout Direction="Row" JustifyContent="SpaceAround" AlignItems="Center">
+                    <Picker ItemsSource="{Binding InstanceList}" FlexLayout.Basis="89%"/>
+                    <Button Text="+" FontSize="Large" FontAttributes="Bold" Command="{Binding AddInstanceCommand}" FlexLayout.Basis="10%"/>
+                </FlexLayout>
+                <FlexLayout Direction="Row" JustifyContent="SpaceAround" AlignItems="Center">
+                    <Label Text="{model:Translate TrackerType}" FlexLayout.Basis="25%"/>
+                    <Picker ItemsSource="{Binding TrackerTypeList}" FlexLayout.Basis="70%"/>
+                </FlexLayout>
+                <FlexLayout Direction="Row" JustifyContent="SpaceAround" AlignItems="Center">
+                    <Label Text="{model:Translate APIkey}" FlexLayout.Basis="25%"/>
+                    <Entry Text="{Binding APIkey}" FlexLayout.Basis="70%"/>
+                </FlexLayout>
+                <FlexLayout Direction="Row" JustifyContent="SpaceAround" AlignItems="Center">
+                    <Label Text="{model:Translate GroupBy}" FlexLayout.Basis="25%"/>
+                    <Picker ItemsSource="{Binding GroupByList}" FlexLayout.Basis="70%"/>
+                </FlexLayout>
+                <FlexLayout Direction="Row" JustifyContent="SpaceAround" AlignItems="Center">
+                    <Label Text="{model:Translate SortBy}" FlexLayout.Basis="25%"/>
+                    <Picker ItemsSource="{Binding SortByList}" FlexLayout.Basis="70%"/>
+                </FlexLayout>
+            </StackLayout>
+            <StackLayout Padding="10" VerticalOptions="End" >
+                <FlexLayout Direction="Row" JustifyContent="SpaceAround">
+                    <Button Text="{model:Translate Save}" Command="{Binding}" FlexLayout.Basis="33%" CornerRadius="7"/>
+                    <Button Text="{model:Translate Check}" Command="{Binding}" FlexLayout.Basis="33%" CornerRadius="7"/>
+                    <Button Text="{model:Translate Cancel}" Command="{Binding}" FlexLayout.Basis="33%" CornerRadius="7"/>
+                </FlexLayout>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    x:Class="TimeDev.LightTheme">
+
+    <Color x:Key="PageBackgroundColor">White</Color>
+    <Color x:Key="NavigationBarColor">WhiteSmoke</Color>
+    <Color x:Key="AppBackgroundColor">White</Color>
+    <Color x:Key="TertiaryTextColor">Gray</Color>
+    <Color x:Key="TransparentColor">Transparent</Color>
+
+    <Color x:Key="TextColor">Black</Color>
+    <Color x:Key="TextBackgroundColor">White</Color>
+    <Color x:Key="ContainerBackgroundColor">WhiteSmoke</Color>
+    <Color x:Key="BackgroundColor">White</Color>
+    <Color x:Key="ButtonBackgroundColor">#2196F3</Color>
+    <Color x:Key="ButtonTextColor">White</Color>
+
+</ResourceDictionary>

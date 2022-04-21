@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:vm="clr-namespace:TimeDev.ViewModels" 
+             xmlns:model="clr-namespace:TimeDev.Models" 
+             x:Class="TimeDev.Views.MainSettingsPage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}"
+             >
+    <ContentPage.Content>
+        <Grid Margin="10" Padding=" 10" >
+            <StackLayout Padding="9" VerticalOptions="Center" >
+                <FlexLayout Direction="Row" JustifyContent="SpaceAround" AlignItems="Center">
+                    <Label Text="{model:Translate Server}" FlexLayout.Basis="20%"/>
+                    <Entry Text="{Binding ServerName}" FlexLayout.Basis="70%"/>
+                </FlexLayout>
+                <FlexLayout Direction="Row" JustifyContent="SpaceAround" AlignItems="Center">
+                    <Label Text="{model:Translate Username}" FlexLayout.Basis="20%"/>
+                    <Entry Text="{Binding UserName}" FlexLayout.Basis="70%"/>
+                </FlexLayout>
+                <FlexLayout Direction="Row" JustifyContent="SpaceAround" AlignItems="Center">
+                    <Label Text="{model:Translate Password}" FlexLayout.Basis="20%"/>
+                    <Entry Text="{Binding Password}" FlexLayout.Basis="70%"/>
+                </FlexLayout>
+            </StackLayout>
+            <StackLayout Padding="10" VerticalOptions="End" >
+                <FlexLayout Direction="Row" JustifyContent="SpaceAround" >
+                    <Button Text="{model:Translate Save}" Command="{Binding}" FlexLayout.Basis="33%" CornerRadius="7"/>
+                    <Button Text="{model:Translate Check}" Command="{Binding}" FlexLayout.Basis="33%" CornerRadius="7"/>
+                    <Button Text="{model:Translate Cancel}" Command="{Binding}" FlexLayout.Basis="33%" CornerRadius="7"/>
+                </FlexLayout>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

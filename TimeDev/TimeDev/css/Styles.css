@@ -1,0 +1,7 @@
+﻿body
+{
+}
+.backgroundColor {
+    background: radial-gradient(DarkGray 10%, Gray 35%, White 65%, Black 95%);
+}
+

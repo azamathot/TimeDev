@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TimeDev.Views.OtherSettingsPage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}"
+             xmlns:vm="clr-namespace:TimeDev.ViewModels" 
+             xmlns:model="clr-namespace:TimeDev.Models" 
+             x:DataType="vm:OtherSettingsViewModel">
+    <ContentPage.Content>
+        <Grid Margin="10" Padding=" 10" >
+            <StackLayout Padding="9" VerticalOptions="Start" >
+                <FlexLayout Direction="Row" JustifyContent="SpaceAround" AlignItems="Center">
+                    <Label Text="{model:Translate Language}" FlexLayout.Basis="20%" />
+                    <Picker ItemsSource="{Binding Language}" FlexLayout.Basis="70%"/>
+                </FlexLayout>
+                <FlexLayout Direction="Row" JustifyContent="SpaceAround" AlignItems="Center">
+                    <Label Text="{model:Translate Theme}" FlexLayout.Basis="20%"/>
+                    <Picker ItemsSource="{Binding Themes}" SelectedIndexChanged="Picker_SelectedIndexChanged" FlexLayout.Basis="70%"/>
+                </FlexLayout>
+                <FlexLayout Direction="Row" JustifyContent="SpaceAround" AlignItems="Center">
+                    <Label Text="{model:Translate WidgetAlwaysOnTop}" FlexLayout.Basis="40%"/>
+                    <CheckBox IsChecked="{Binding IsChecked}" FlexLayout.Basis="10%">
+                    </CheckBox>
+                </FlexLayout>
+            </StackLayout>
+            <StackLayout Padding="10" VerticalOptions="End" >
+                <FlexLayout Direction="Row" JustifyContent="SpaceAround">
+                    <Button Text="{model:Translate Apply}" Command="{Binding}" FlexLayout.Basis="33%" CornerRadius="7"/>
+                    <Button Text="{model:Translate Cancel}" Command="{Binding}" FlexLayout.Basis="33%" CornerRadius="7"/>
+                </FlexLayout>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
