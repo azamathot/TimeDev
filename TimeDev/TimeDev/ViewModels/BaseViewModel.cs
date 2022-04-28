@@ -12,6 +12,7 @@ namespace TimeDev.ViewModels
     {
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
         public IDataStore<TaskLocal> DataStoreTask => DependencyService.Get<IDataStore<TaskLocal>>();
+        public AppSettingsManager AppSettings => DependencyService.Get<AppSettingsManager>();
 
         bool isBusy = false;
         public bool IsBusy

@@ -11,6 +11,11 @@ namespace TimeDev.Models
         string groupBy;
         string sortBy;
 
+        public Tracker(string instance)
+        {
+            this.instance = instance;
+        }
+
         public string APIkey { get => apikey; set => SetProperty(ref apikey, value); }
         public string Instance { get => instance; set => SetProperty(ref instance, value); }
         public string TrackerType { get => trackerType; set => SetProperty(ref trackerType, value); }

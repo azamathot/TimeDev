@@ -28,14 +28,15 @@ namespace TimeDev.Models
         public TimeSpan Duration { get => _duration; set => SetProperty(ref _duration, value); }
         public DateTime? BeginTimeTask { get => _beginTimeTask; set => SetProperty(ref _beginTimeTask, value); }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public bool IsChanged { get; set; }
 
         public override string ToString()
         {
             return $"{Id} {TaskType} {Description} {(int)Duration.TotalHours + Duration.ToString(@"\:mm\:ss")}";
         }
+
+        #region INotifyPropertyChanged members
+        public event PropertyChangedEventHandler PropertyChanged;
         protected bool SetProperty<T>(ref T field, T newValue, [CallerMemberName] string propertyName = null)
         {
             if (!Equals(field, newValue))
@@ -48,5 +49,6 @@ namespace TimeDev.Models
 
             return false;
         }
+        #endregion
     }
 }

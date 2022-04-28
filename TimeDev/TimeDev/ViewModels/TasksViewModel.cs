@@ -43,11 +43,6 @@ namespace TimeDev.ViewModels
             {
                 Items.Clear();
                 var items = await DataStoreTask.GetItemsAsync(true);
-                //IEnumerable<TaskLocal> tasksMESD = await DataStoreTask.GetItemsAsync(true);
-                //var mapper = new MapperConfiguration(cfg => cfg.CreateMap<TaskLocal, TaskViewModel>()).CreateMapper();
-                ////Items = mapper.Map<IEnumerable<TaskMESD>, ObservableCollection<TaskViewModel>>(tasksMESD);
-                //var items = mapper.Map<IEnumerable<TaskLocal>, ObservableCollection<TaskViewModel>>(tasksMESD);
-
                 foreach (var item in items)
                 {
                     Items.Add(item);
@@ -80,25 +75,16 @@ namespace TimeDev.ViewModels
             }
         }
 
-        //private async void OnAddItem(object obj)
-        //{
-        //    await Shell.Current.GoToAsync(nameof(NewItemPage));
-        //}
-
         void OnItemSelected(TaskLocal item)
         {
             if (item == null)
                 return;
-            //await Shell.Current.CurrentPage.DisplayAlert("Selected", item.Description, "close");
             _timerVM.UpdateTask(item);
 
             if (!Equals(_selectedItem, item))
             {
                 SelectedItem = item;
             }
-
-            // This will push the ItemDetailPage onto the navigation stack
-            //await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
         }
 
     }

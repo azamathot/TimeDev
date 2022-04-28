@@ -5,6 +5,7 @@
              xmlns:convert="clr-namespace:TimeDev.Converters"
              x:Class="TimeDev.Views.TimerView"
              BackgroundColor="{DynamicResource PageBackgroundColor}"
+             xmlns:resx="clr-namespace:TimeDev.Resx"
              >
     <ContentView.Resources>
         <ResourceDictionary>

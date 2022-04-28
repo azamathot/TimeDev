@@ -57,9 +57,9 @@ namespace TimeDev.Services
             return await Task.FromResult(items);
         }
 
-        public async Task<int> SaveChanges()
+        public async Task SaveChanges()
         {
-            return await Task.FromResult(items.Count);
+            await Task.FromResult(items.Count);
         }
     }
 }

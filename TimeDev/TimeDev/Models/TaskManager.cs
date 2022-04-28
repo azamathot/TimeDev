@@ -1,21 +1,21 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Xamarin.Forms;
 
 namespace TimeDev.Models
 {
-    public class MainSettings : INotifyPropertyChanged
+    public class TaskManager : INotifyPropertyChanged
     {
-        string server;
-        string username;
-        string password;
+        private TaskLocal selectedTask;
 
-        public string Server { get => server; set => SetProperty(ref server, value); }
-        public string Username { get => username; set => SetProperty(ref username, value); }
-        public string Password { get => password; set => SetProperty(ref password, value); }
+        public TaskLocal SelectedTask { get => selectedTask; set => selectedTask = value; }
+        public ObservableCollection<TaskLocal> Tasks { get; set; }
+        public Command StopCommand { get; }
+        public Command StartCommand { get; }
 
-        #region INotifyPropertyChanged
+        #region INotifyPropertyChanged members
         public event PropertyChangedEventHandler PropertyChanged;
-
         protected bool SetProperty<T>(ref T field, T newValue, [CallerMemberName] string propertyName = null)
         {
             if (!Equals(field, newValue))

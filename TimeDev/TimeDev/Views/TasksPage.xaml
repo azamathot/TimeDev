@@ -9,6 +9,7 @@
              xmlns:model="clr-namespace:TimeDev.Models"
              x:DataType="vm:TasksViewModel"
              BackgroundColor="{DynamicResource PageBackgroundColor}"
+             xmlns:resx="clr-namespace:TimeDev.Resx"
              >
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -53,7 +54,7 @@
                     </CollectionView>
                 </RefreshView>
             </Frame>
-            <Button Text="Save" Command="{Binding SaveChangesCommand}"></Button>
+            <Button Text="{x:Static resx:Resource.Save}" Command="{Binding SaveChangesCommand}"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

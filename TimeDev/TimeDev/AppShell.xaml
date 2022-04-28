@@ -2,10 +2,10 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:view="clr-namespace:TimeDev.Views"
-       xmlns:model="clr-namespace:TimeDev.Models"
        Title="TimeDev"
        x:Class="TimeDev.AppShell"
        BackgroundColor="{DynamicResource PageBackgroundColor}"
+       xmlns:resx="clr-namespace:TimeDev.Resx"
        >
 
     <!--
@@ -87,9 +87,9 @@
     </FlyoutItem>
     <FlyoutItem Title="Settings" Icon="icon_feed.png"  >
         <Tab Title="Settings" FlyoutDisplayOptions="AsSingleItem">
-            <ShellContent Route="MainSettingsPage" Title="{model:Translate Main}" ContentTemplate="{DataTemplate view:MainSettingsPage}"/>
-            <ShellContent Route="TrackerSettingsPage" Title="{model:Translate Trackers}" ContentTemplate="{DataTemplate view:TrackerSettingsPage}" />
-            <ShellContent Route="OtherSettingsPage" Title="{model:Translate Others}" ContentTemplate="{DataTemplate view:OtherSettingsPage}" />
+            <ShellContent Route="MainSettingsPage" Title="{x:Static resx:Resource.Main}" ContentTemplate="{DataTemplate view:MainSettingsPage}"/>
+            <ShellContent Route="TrackerSettingsPage" Title="{x:Static resx:Resource.Trackers}" ContentTemplate="{DataTemplate view:TrackerSettingsPage}" />
+            <ShellContent Route="OtherSettingsPage" Title="{x:Static resx:Resource.Others}" ContentTemplate="{DataTemplate view:OtherSettingsPage}" />
         </Tab>
         <!--<Tab Title="test">
             <ShellContent Route="AboutPage" Title="About" ContentTemplate="{DataTemplate local:AboutPage}"/>

@@ -4,38 +4,38 @@
              x:Class="TimeDev.Views.TrackerSettingsPage"
              BackgroundColor="{DynamicResource PageBackgroundColor}"
              xmlns:vm="clr-namespace:TimeDev.ViewModels" 
-             xmlns:model="clr-namespace:TimeDev.Models" 
-             x:DataType="vm:TrackerSettingsViewModel"
+             x:DataType="vm:AppSettingsViewModel"
+             xmlns:resx="clr-namespace:TimeDev.Resx"
              >
     <ContentPage.Content>
         <Grid Margin="10" Padding=" 10">
             <StackLayout Padding="9" VerticalOptions="Start">
                 <FlexLayout Direction="Row" JustifyContent="SpaceAround" AlignItems="Center">
-                    <Picker ItemsSource="{Binding InstanceList}" FlexLayout.Basis="89%"/>
+                    <Picker ItemsSource="{Binding AppSettings.UserSettings.InstanceList}" ItemDisplayBinding="{Binding Instance}" SelectedItem="{Binding SelectedInstance}" SelectedIndex="{Binding AppSettings.UserSettings.SelectedInstanceIndex}" FlexLayout.Basis="89%"/>
                     <Button Text="+" FontSize="Large" FontAttributes="Bold" Command="{Binding AddInstanceCommand}" FlexLayout.Basis="10%"/>
                 </FlexLayout>
                 <FlexLayout Direction="Row" JustifyContent="SpaceAround" AlignItems="Center">
-                    <Label Text="{model:Translate TrackerType}" FlexLayout.Basis="25%"/>
-                    <Picker ItemsSource="{Binding TrackerTypeList}" FlexLayout.Basis="70%"/>
+                    <Label Text="{x:Static resx:Resource.TrackerType}" FlexLayout.Basis="25%"/>
+                    <Picker ItemsSource="{Binding AppSettings.BaseSettings.TrackerTypeList}" SelectedItem="{Binding SelectedInstance.TrackerType}" FlexLayout.Basis="70%"/>
                 </FlexLayout>
                 <FlexLayout Direction="Row" JustifyContent="SpaceAround" AlignItems="Center">
-                    <Label Text="{model:Translate APIkey}" FlexLayout.Basis="25%"/>
-                    <Entry Text="{Binding APIkey}" FlexLayout.Basis="70%"/>
+                    <Label Text="{x:Static resx:Resource.APIkey}" FlexLayout.Basis="25%"/>
+                    <Entry Text="{Binding SelectedInstance.APIkey}" FlexLayout.Basis="70%"/>
                 </FlexLayout>
                 <FlexLayout Direction="Row" JustifyContent="SpaceAround" AlignItems="Center">
-                    <Label Text="{model:Translate GroupBy}" FlexLayout.Basis="25%"/>
-                    <Picker ItemsSource="{Binding GroupByList}" FlexLayout.Basis="70%"/>
+                    <Label Text="{x:Static resx:Resource.GroupBy}" FlexLayout.Basis="25%"/>
+                    <Picker ItemsSource="{Binding AppSettings.BaseSettings.GroupByList}" SelectedItem="{Binding SelectedInstance.GroupBy}" FlexLayout.Basis="70%"/>
                 </FlexLayout>
                 <FlexLayout Direction="Row" JustifyContent="SpaceAround" AlignItems="Center">
-                    <Label Text="{model:Translate SortBy}" FlexLayout.Basis="25%"/>
-                    <Picker ItemsSource="{Binding SortByList}" FlexLayout.Basis="70%"/>
+                    <Label Text="{x:Static resx:Resource.SortBy}" FlexLayout.Basis="25%"/>
+                    <Picker ItemsSource="{Binding AppSettings.BaseSettings.SortByList}" SelectedItem="{Binding SelectedInstance.SortBy}" FlexLayout.Basis="70%"/>
                 </FlexLayout>
             </StackLayout>
             <StackLayout Padding="10" VerticalOptions="End" >
                 <FlexLayout Direction="Row" JustifyContent="SpaceAround">
-                    <Button Text="{model:Translate Save}" Command="{Binding}" FlexLayout.Basis="33%" CornerRadius="7"/>
-                    <Button Text="{model:Translate Check}" Command="{Binding}" FlexLayout.Basis="33%" CornerRadius="7"/>
-                    <Button Text="{model:Translate Cancel}" Command="{Binding}" FlexLayout.Basis="33%" CornerRadius="7"/>
+                    <Button Text="{x:Static resx:Resource.Save}" Command="{Binding SaveSettingsCommand}" FlexLayout.Basis="33%" CornerRadius="7"/>
+                    <Button Text="{x:Static resx:Resource.Check}" Command="{Binding CheckSettingsCommand}" FlexLayout.Basis="33%" CornerRadius="7"/>
+                    <Button Text="{x:Static resx:Resource.Cancel}" Command="{Binding CancelChangeCommand}" FlexLayout.Basis="33%" CornerRadius="7"/>
                 </FlexLayout>
             </StackLayout>
         </Grid>

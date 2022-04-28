@@ -1,6 +1,4 @@
 ﻿using System;
-using TimeDev.Models;
-using TimeDev.Resx;
 using TimeDev.Services;
 using Xamarin.Forms;
 
@@ -14,14 +12,9 @@ namespace TimeDev
         {
             InitializeComponent();
 
-            if (Device.RuntimePlatform != Device.UWP)
-            {
-                Resource.Culture = DependencyService.Get<ILocalize>()
-                                    .GetCurrentCultureInfo();
-            }
-
             DependencyService.Register<MockDataStore>();
             DependencyService.Register<MockDataStoreTask>();
+            DependencyService.Register<AppSettingsManager>();
             MainPage = new AppShell();
         }
 

@@ -8,11 +8,11 @@ namespace TimeDev.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OtherSettingsPage : ContentPage
     {
-        private OtherSettingsViewModel _viewModel;
+        private AppSettingsViewModel _viewModel;
         public OtherSettingsPage()
         {
             InitializeComponent();
-            this.BindingContext = _viewModel = new OtherSettingsViewModel();
+            this.BindingContext = _viewModel = new AppSettingsViewModel();
         }
 
         private void Picker_SelectedIndexChanged(object sender, System.EventArgs e)

@@ -4,29 +4,30 @@
              x:Class="TimeDev.Views.OtherSettingsPage"
              BackgroundColor="{DynamicResource PageBackgroundColor}"
              xmlns:vm="clr-namespace:TimeDev.ViewModels" 
-             xmlns:model="clr-namespace:TimeDev.Models" 
-             x:DataType="vm:OtherSettingsViewModel">
+             x:DataType="vm:AppSettingsViewModel"
+             xmlns:resx="clr-namespace:TimeDev.Resx"
+             >
     <ContentPage.Content>
         <Grid Margin="10" Padding=" 10" >
             <StackLayout Padding="9" VerticalOptions="Start" >
                 <FlexLayout Direction="Row" JustifyContent="SpaceAround" AlignItems="Center">
-                    <Label Text="{model:Translate Language}" FlexLayout.Basis="20%" />
-                    <Picker ItemsSource="{Binding Language}" FlexLayout.Basis="70%"/>
+                    <Label Text="{x:Static resx:Resource.Language}" FlexLayout.Basis="20%" />
+                    <Picker ItemsSource="{Binding AppSettings.BaseSettings.Languages}" SelectedItem="{Binding AppSettings.UserSettings.SelectedLaguage}" FlexLayout.Basis="70%"/>
                 </FlexLayout>
                 <FlexLayout Direction="Row" JustifyContent="SpaceAround" AlignItems="Center">
-                    <Label Text="{model:Translate Theme}" FlexLayout.Basis="20%"/>
-                    <Picker ItemsSource="{Binding Themes}" SelectedIndexChanged="Picker_SelectedIndexChanged" FlexLayout.Basis="70%"/>
+                    <Label Text="{x:Static resx:Resource.Theme}" FlexLayout.Basis="20%"/>
+                    <Picker ItemsSource="{Binding AppSettings.BaseSettings.Themes}" SelectedItem="{Binding AppSettings.UserSettings.SelectedTheme}" SelectedIndexChanged="Picker_SelectedIndexChanged" FlexLayout.Basis="70%"/>
                 </FlexLayout>
                 <FlexLayout Direction="Row" JustifyContent="SpaceAround" AlignItems="Center">
-                    <Label Text="{model:Translate WidgetAlwaysOnTop}" FlexLayout.Basis="40%"/>
-                    <CheckBox IsChecked="{Binding IsChecked}" FlexLayout.Basis="10%">
+                    <Label Text="{x:Static resx:Resource.WidgetAlwaysOnTop}" FlexLayout.Basis="40%"/>
+                    <CheckBox IsChecked="{Binding AppSettings.UserSettings.WidgetOnTop}" FlexLayout.Basis="10%">
                     </CheckBox>
                 </FlexLayout>
             </StackLayout>
             <StackLayout Padding="10" VerticalOptions="End" >
                 <FlexLayout Direction="Row" JustifyContent="SpaceAround">
-                    <Button Text="{model:Translate Apply}" Command="{Binding}" FlexLayout.Basis="33%" CornerRadius="7"/>
-                    <Button Text="{model:Translate Cancel}" Command="{Binding}" FlexLayout.Basis="33%" CornerRadius="7"/>
+                    <Button Text="{x:Static resx:Resource.Apply}" Command="{Binding ApplySettingsCommand}" FlexLayout.Basis="33%" CornerRadius="7"/>
+                    <Button Text="{x:Static resx:Resource.Cancel}" Command="{Binding CancelChangeCommand}" FlexLayout.Basis="33%" CornerRadius="7"/>
                 </FlexLayout>
             </StackLayout>
         </Grid>

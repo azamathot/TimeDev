@@ -7,11 +7,11 @@ namespace TimeDev.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TrackerSettingsPage : ContentPage
     {
-        private TrackerSettingsViewModel _viewModel;
+        private AppSettingsViewModel _viewModel;
         public TrackerSettingsPage()
         {
             InitializeComponent();
-            this.BindingContext = _viewModel = new TrackerSettingsViewModel();
+            this.BindingContext = _viewModel = new AppSettingsViewModel();
         }
     }
 }

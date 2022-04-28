@@ -1,12 +1,13 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Timers;
-using TimeDev.Models;
 using Xamarin.Forms;
 
-namespace TimeDev.ViewModels
+namespace TimeDev.Models
 {
-    public class TimerViewModel : BaseViewModel
+    public class TimerManager : INotifyPropertyChanged
     {
         const int intervalTime = 1000;
 
@@ -15,20 +16,11 @@ namespace TimeDev.ViewModels
         private bool isRunning;
         private string status;
         private TaskLocal taskLocal;
-
         private Timer mainTimer;
-        //private Timer SaveTimer;
 
-        public TimerViewModel()
-        {
-            mainTimer = new Timer(intervalTime);
-            mainTimer.Elapsed += (sender, e) => OnPropertyChanged("Duration");
-            TimerStartStopCommand = new Command(TimerCommand);
-            Stopwatch = new Stopwatch();
-
-            //SaveTimer = new Timer(intervalSave);
-            //SaveTimer.Elapsed += (sender, e) => SaveTimeEvent?.Invoke(TimeSpan, e);
-        }
+        public Command StopCommand { get; }
+        public Command StartCommand { get; }
+        public Command TimerStartStopCommand { get; }
 
         public DateTime? BeginTimeTask { get; set; }
         public bool IsRunning { get => isRunning; set => SetProperty(ref isRunning, value); }
@@ -80,10 +72,6 @@ namespace TimeDev.ViewModels
         }
 
         public event EventHandler SaveTimeEvent;
-        public Command TimerStartStopCommand { get; }
-
-        //private TimeSpan timeSpan;
-        //public TimeSpan TimeSpan { get => timeSpan; set => SetProperty(ref timeSpan, value); }
 
         private void TimerCommand()
         {
@@ -96,5 +84,20 @@ namespace TimeDev.ViewModels
                 Start();
             }
         }
+
+
+        #region INotifyPropertyChanged members
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected bool SetProperty<T>(ref T field, T newValue, [CallerMemberName] string propertyName = null)
+        {
+            if (!Equals(field, newValue))
+            {
+                field = newValue;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+                return true;
+            }
+            return false;
+        }
+        #endregion
     }
 }

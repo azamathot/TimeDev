@@ -64,16 +64,17 @@ namespace TimeDev.Services
             return await Task.FromResult(items);
         }
 
-        public async Task<int> SaveChanges()
+        public async Task SaveChanges()
         {
             var changesList = items.Where(s => s.IsChanged).ToList();
             JsonSerializer serializer = new JsonSerializer();
-            using (StreamWriter sw = new StreamWriter(Path.Combine(App.folderPath, filename)))
+            foreach (var item in changesList)
             {
-                await Task.Run(() => serializer.Serialize(sw, changesList));
+                using (StreamWriter sw = new StreamWriter(Path.Combine(App.folderPath, item.Id + "_" + DateTime.Now.Ticks.ToString())))
+                {
+                    await Task.Run(() => serializer.Serialize(sw, item));
+                }
             }
-            await LoadFromFile();
-            return await Task.FromResult(items.Count);
         }
 
         public async Task<int> LoadFromFile()
