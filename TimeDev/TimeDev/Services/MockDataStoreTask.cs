@@ -66,7 +66,7 @@ namespace TimeDev.Services
 
         public async Task SaveChanges()
         {
-            var changesList = items.Where(s => s.IsChanged).ToList();
+            var changesList = items.Where(s => s.Comment != "").ToList();
             JsonSerializer serializer = new JsonSerializer();
             foreach (var item in changesList)
             {

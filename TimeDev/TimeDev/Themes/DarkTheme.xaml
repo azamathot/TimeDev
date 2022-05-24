@@ -10,7 +10,7 @@
     <Color x:Key="TransparentColor">Transparent</Color>
 
     <Color x:Key="TextColor">White</Color>
-    <Color x:Key="TextBackgroundColor">#55575A</Color>
+    <Color x:Key="TextBackgroundColor">#6489C1</Color>
     <Color x:Key="ContainerBackgroundColor">#072D67</Color>
     <Color x:Key="BackgroundColor">Teal</Color>
     <Color x:Key="ButtonBackgroundColor">#2196F3</Color>

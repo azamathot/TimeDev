@@ -13,9 +13,12 @@ namespace TimeDev
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
-            DependencyService.Register<MockDataStoreTask>();
+            //DependencyService.Register<MockDataStoreTask>();
+            DependencyService.Register<TimerService>();
             DependencyService.Register<AppSettingsManager>();
+            DependencyService.Register<TasksService>();
             MainPage = new AppShell();
+            DependencyService.Get<AppSettingsManager>();
         }
 
         protected override void OnStart()

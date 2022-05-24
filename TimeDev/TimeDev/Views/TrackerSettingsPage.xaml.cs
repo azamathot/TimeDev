@@ -8,10 +8,12 @@ namespace TimeDev.Views
     public partial class TrackerSettingsPage : ContentPage
     {
         private AppSettingsViewModel _viewModel;
+
+        [System.Obsolete]
         public TrackerSettingsPage()
         {
             InitializeComponent();
-            this.BindingContext = _viewModel = new AppSettingsViewModel();
+            this.BindingContext = _viewModel = AppSettingsViewModel.GetInstance();
         }
     }
 }

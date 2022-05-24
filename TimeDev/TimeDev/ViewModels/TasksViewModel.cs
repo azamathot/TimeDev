@@ -3,50 +3,45 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using TimeDev.Models;
+using TimeDev.Services;
 using Xamarin.Forms;
 
 namespace TimeDev.ViewModels
 {
     public class TasksViewModel : BaseViewModel
     {
-        private TaskLocal _selectedItem;
-        private TimerViewModel _timerVM;
-
-        public ObservableCollection<TaskLocal> Items { get; set; }
         public Command LoadItemsCommand { get; }
         public Command AddItemCommand { get; }
         public Command SaveChangesCommand { get; }
         public Command<TaskLocal> ItemTapped { get; }
+        public Command CommentUpdateCommand { get; }
 
-        public TasksViewModel(TimerViewModel timerView)
+        public TasksViewModel()
         {
             Title = "Tasks";
-            Items = new ObservableCollection<TaskLocal>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-            SaveChangesCommand = new Command(async () => await DataStoreTask.SaveChanges());
-
+            SaveChangesCommand = new Command(async () => await TasksService.SaveTaskAsync());
             ItemTapped = new Command<TaskLocal>(OnItemSelected);
-            _timerVM = timerView;
-            //AddItemCommand = new Command(OnAddItem);
+            CommentUpdateCommand = new Command(async () =>
+            {
+                await TasksService.CommentUpdate();
+                await TasksService.SaveTaskAsync();
+            });
         }
 
-        private void SelectedItem_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            DataStoreTask.SaveChanges();
-        }
-
+        public ObservableCollection<ITaskLocal> Tasks => TasksService.Tasks;
         async Task ExecuteLoadItemsCommand()
         {
             IsBusy = true;
 
             try
             {
-                Items.Clear();
-                var items = await DataStoreTask.GetItemsAsync(true);
-                foreach (var item in items)
-                {
-                    Items.Add(item);
-                }
+                //Tasks?.Clear();
+                var items = await TasksService.GetItemsAsync();
+                //foreach (var item in items)
+                //{
+                //    Tasks.Add(item);
+                //}
             }
             catch (Exception ex)
             {
@@ -61,29 +56,28 @@ namespace TimeDev.ViewModels
         public void OnAppearing()
         {
             IsBusy = true;
-            SelectedItem = null;
+            //SelectedItem = null;
         }
 
-        public TaskLocal SelectedItem
-        {
-            get => _selectedItem;
-            set
-            {
-                SetProperty(ref _selectedItem, value);
-                if (!Equals(_selectedItem, value))
-                    OnItemSelected(value);
-            }
-        }
+        //public TaskLocal SelectedItem => TasksService.SelectedTask;
+        //{
+        //    get => _selectedItem;
+        //    set
+        //    {
+        //        SetProperty(ref _selectedItem, value);
+        //        //if (!Equals(_selectedItem, value))
+        //        //    OnItemSelected(value);
+        //    }
+        //}
 
         void OnItemSelected(TaskLocal item)
         {
             if (item == null)
                 return;
-            _timerVM.UpdateTask(item);
 
-            if (!Equals(_selectedItem, item))
+            if (!Equals(TasksService.SelectedTask, item))
             {
-                SelectedItem = item;
+                TasksService.SelectedTask = item;
             }
         }
 

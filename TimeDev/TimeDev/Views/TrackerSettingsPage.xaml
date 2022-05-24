@@ -11,24 +11,28 @@
         <Grid Margin="10" Padding=" 10">
             <StackLayout Padding="9" VerticalOptions="Start">
                 <FlexLayout Direction="Row" JustifyContent="SpaceAround" AlignItems="Center">
-                    <Picker ItemsSource="{Binding AppSettings.UserSettings.InstanceList}" ItemDisplayBinding="{Binding Instance}" SelectedItem="{Binding SelectedInstance}" SelectedIndex="{Binding AppSettings.UserSettings.SelectedInstanceIndex}" FlexLayout.Basis="89%"/>
+                    <Picker ItemsSource="{Binding AppSettings.UserSettings.InstanceList}" ItemDisplayBinding="{Binding Instance}" SelectedIndex="{Binding AppSettings.UserSettings.SelectedInstanceIndex}"  SelectedItem="{Binding AppSettings.SelectedInstance, Mode=OneWayToSource}" FlexLayout.Basis="89%"/>
                     <Button Text="+" FontSize="Large" FontAttributes="Bold" Command="{Binding AddInstanceCommand}" FlexLayout.Basis="10%"/>
                 </FlexLayout>
                 <FlexLayout Direction="Row" JustifyContent="SpaceAround" AlignItems="Center">
-                    <Label Text="{x:Static resx:Resource.TrackerType}" FlexLayout.Basis="25%"/>
-                    <Picker ItemsSource="{Binding AppSettings.BaseSettings.TrackerTypeList}" SelectedItem="{Binding SelectedInstance.TrackerType}" FlexLayout.Basis="70%"/>
+                    <Label Text="{x:Static resx:Resource.URL}" FlexLayout.Basis="35%"/>
+                    <Entry Text="{Binding AppSettings.SelectedInstance.URL}" FlexLayout.Basis="60%"/>
                 </FlexLayout>
                 <FlexLayout Direction="Row" JustifyContent="SpaceAround" AlignItems="Center">
-                    <Label Text="{x:Static resx:Resource.APIkey}" FlexLayout.Basis="25%"/>
-                    <Entry Text="{Binding SelectedInstance.APIkey}" FlexLayout.Basis="70%"/>
+                    <Label Text="{x:Static resx:Resource.TrackerType}" FlexLayout.Basis="35%"/>
+                    <Picker ItemsSource="{Binding AppSettings.BaseSettings.TrackerTypeList}" ItemDisplayBinding="{Binding Name}" SelectedIndex="{Binding AppSettings.SelectedInstance.TrackerTypeIndex}" FlexLayout.Basis="60%"/>
                 </FlexLayout>
                 <FlexLayout Direction="Row" JustifyContent="SpaceAround" AlignItems="Center">
-                    <Label Text="{x:Static resx:Resource.GroupBy}" FlexLayout.Basis="25%"/>
-                    <Picker ItemsSource="{Binding AppSettings.BaseSettings.GroupByList}" SelectedItem="{Binding SelectedInstance.GroupBy}" FlexLayout.Basis="70%"/>
+                    <Label Text="{x:Static resx:Resource.APIkey}" FlexLayout.Basis="35%"/>
+                    <Entry Text="{Binding AppSettings.SelectedInstance.APIkey}" FlexLayout.Basis="60%"/>
                 </FlexLayout>
                 <FlexLayout Direction="Row" JustifyContent="SpaceAround" AlignItems="Center">
-                    <Label Text="{x:Static resx:Resource.SortBy}" FlexLayout.Basis="25%"/>
-                    <Picker ItemsSource="{Binding AppSettings.BaseSettings.SortByList}" SelectedItem="{Binding SelectedInstance.SortBy}" FlexLayout.Basis="70%"/>
+                    <Label Text="{x:Static resx:Resource.GroupBy}" FlexLayout.Basis="35%"/>
+                    <Picker ItemsSource="{Binding AppSettings.BaseSettings.GroupByList}" SelectedItem="{Binding AppSettings.SelectedInstance.GroupBy}" FlexLayout.Basis="60%"/>
+                </FlexLayout>
+                <FlexLayout Direction="Row" JustifyContent="SpaceAround" AlignItems="Center">
+                    <Label Text="{x:Static resx:Resource.SortBy}" FlexLayout.Basis="35%"/>
+                    <Picker ItemsSource="{Binding AppSettings.BaseSettings.SortByList}" SelectedItem="{Binding AppSettings.SelectedInstance.SortBy}" FlexLayout.Basis="60%"/>
                 </FlexLayout>
             </StackLayout>
             <StackLayout Padding="10" VerticalOptions="End" >

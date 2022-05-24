@@ -13,7 +13,7 @@ namespace TimeDev.Views
         {
             InitializeComponent();
             this.BindingContext = _viewModel = new TimerViewModel();
-            _viewModel.SaveTimeEvent += (sender, e) => Dispatcher.BeginInvokeOnMainThread(() => SaveTimeEvent?.Invoke(sender, e));
+            //_viewModel.SaveTimeEvent += (sender, e) => Dispatcher.BeginInvokeOnMainThread(() => SaveTimeEvent?.Invoke(sender, e));
         }
         public event EventHandler SaveTimeEvent;
     }

@@ -129,6 +129,12 @@
   <data name="Check" xml:space="preserve">
     <value>Check</value>
   </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Duration</value>
+  </data>
   <data name="GroupBy" xml:space="preserve">
     <value>Group by</value>
   </data>
@@ -156,6 +162,9 @@
   <data name="SortBy" xml:space="preserve">
     <value>Sort by</value>
   </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
   <data name="Theme" xml:space="preserve">
     <value>Theme</value>
   </data>
@@ -164,6 +173,9 @@
   </data>
   <data name="TrackerType" xml:space="preserve">
     <value>Tracker type</value>
+  </data>
+  <data name="URL" xml:space="preserve">
+    <value>URL</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Username</value>

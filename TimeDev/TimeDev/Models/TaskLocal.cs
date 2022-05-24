@@ -4,36 +4,44 @@ using System.Runtime.CompilerServices;
 
 namespace TimeDev.Models
 {
-    public class TaskLocal : INotifyPropertyChanged
+    public delegate void TaskStatusChanged();
+    public class TaskLocal : INotifyPropertyChanged, ITaskLocal
     {
-        private DateTime? _beginTimeTask;
+        private DateTimeOffset? _beginTimeTask;
         private TimeSpan _duration;
+        private string comment;
 
         public TaskLocal()
         {
         }
-        public TaskLocal(string id, string taskType, string descriptin, TimeSpan duration, DateTime? beginTimeTask = null, bool isChanged = false)
+        public TaskLocal(string id, string taskType, string descriptin, TimeSpan duration = new TimeSpan(), DateTime? beginTimeTask = null, string comment = "")
         {
             Id = id;
             TaskType = taskType;
-            Description = descriptin;
+            DescriptionTask = descriptin;
             _duration = duration;
             _beginTimeTask = beginTimeTask;
-            IsChanged = isChanged;
+            Comment = comment;
         }
 
         public string Id { get; set; }
-        public string Description { get; set; }
+        public string DescriptionTask { get; set; }
+
         public string TaskType { get; set; }
         public TimeSpan Duration { get => _duration; set => SetProperty(ref _duration, value); }
-        public DateTime? BeginTimeTask { get => _beginTimeTask; set => SetProperty(ref _beginTimeTask, value); }
-
-        public bool IsChanged { get; set; }
+        public DateTimeOffset? BeginTimeTask { get => _beginTimeTask; set => SetProperty(ref _beginTimeTask, value); }
+        public string Comment { get => comment; set => SetProperty(ref comment, value); }
+        public User User { get; set; }
 
         public override string ToString()
         {
-            return $"{Id} {TaskType} {Description} {(int)Duration.TotalHours + Duration.ToString(@"\:mm\:ss")}";
+            return $"{Id} {TaskType} {DescriptionTask} {(int)Duration.TotalHours + Duration.ToString(@"\:mm\:ss")}";
         }
+
+        public event TaskStatusChanged Started;
+        public event TaskStatusChanged Stoped;
+        public void Start() => Started?.Invoke();
+        public void Stop() => Stoped?.Invoke();
 
         #region INotifyPropertyChanged members
         public event PropertyChangedEventHandler PropertyChanged;
@@ -43,10 +51,8 @@ namespace TimeDev.Models
             {
                 field = newValue;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-                IsChanged = true;
                 return true;
             }
-
             return false;
         }
         #endregion

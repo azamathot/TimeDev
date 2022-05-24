@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TimeDev.Views.TaskEditPage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}"
+             xmlns:resx="clr-namespace:TimeDev.Resx"
+             xmlns:vm="clr-namespace:TimeDev.ViewModels"  
+             x:DataType="vm:TaskEditViewModel"
+             >
+    <StackLayout Spacing="3" Padding="15">
+        <Label Text="{Binding TaskType}" />
+        <Label Text="{Binding Id}" />
+        <Label Text="{Binding DescriptionTask}" />
+        <Label Text="{Binding BeginTimeTask}" />
+        <Label Text="{x:Static resx:Resource.Comment}"/>
+        <Entry Text="{Binding Comment}"/>
+        <Label Text="{x:Static resx:Resource.Duration}"/>
+        <Entry Text="{Binding Duration}" TextChanged="Entry_TextChanged"/>
+        <StackLayout Orientation="Horizontal">
+            <Button Text="{x:Static resx:Resource.Cancel}" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+            <Button Text="{x:Static resx:Resource.Save}" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

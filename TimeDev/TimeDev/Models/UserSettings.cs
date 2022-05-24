@@ -26,7 +26,6 @@ namespace TimeDev.Models
         public string SelectedLaguage { get => selectedLanguage; set => SetProperty(ref selectedLanguage, value); }
         public bool WidgetOnTop { get => widgetOnTop; set => SetProperty(ref widgetOnTop, value); }
         public int SelectedInstanceIndex { get => selectedInstanceIndex; set => SetProperty(ref selectedInstanceIndex, value); }
-
         public ObservableCollection<Tracker> InstanceList { get; set; }
 
         #region INotifyPropertyChanged members

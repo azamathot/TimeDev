@@ -65,8 +65,8 @@ namespace UwpToSystray
                 MainWindow = new FormsApplicationPage
                 {
                     Title = "Xamarin.Forms tray!",
-                    Height = 600,
-                    Width = 350,
+                    Height = 800,
+                    Width = 450,
                     Topmost = true,
                     ShowInTaskbar = false,
                     ResizeMode = ResizeMode.NoResize,

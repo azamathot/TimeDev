@@ -7,18 +7,22 @@ namespace TimeDev.Models
     {
         string apikey;
         string instance;
-        string trackerType;
+        //ITrackerType trackerType;
         string groupBy;
         string sortBy;
+        private int trackerTypeIndex;
+        private string url;
 
         public Tracker(string instance)
         {
             this.instance = instance;
         }
 
+        public string URL { get => url; set => SetProperty(ref url, value); }
         public string APIkey { get => apikey; set => SetProperty(ref apikey, value); }
         public string Instance { get => instance; set => SetProperty(ref instance, value); }
-        public string TrackerType { get => trackerType; set => SetProperty(ref trackerType, value); }
+        //public ITrackerType TrackerType { get => trackerType; set => SetProperty(ref trackerType, value); }
+        public int TrackerTypeIndex { get => trackerTypeIndex; set => SetProperty(ref trackerTypeIndex, value); }
         public string GroupBy { get => groupBy; set => SetProperty(ref groupBy, value); }
         public string SortBy { get => sortBy; set => SetProperty(ref sortBy, value); }
 

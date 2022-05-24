@@ -38,6 +38,13 @@
                     Value="{DynamicResource TextColor}" />
         </Style>
 
+        <Style TargetType="Entry">
+            <Setter Property="TextColor"
+                    Value="{DynamicResource TextColor}" />
+            <Setter Property="BackgroundColor"
+                    Value="{DynamicResource TextBackgroundColor}" />
+        </Style>
+
         <Style TargetType="FlexLayout">
             <Setter Property="BackgroundColor"
                     Value="{DynamicResource ContainerBackgroundColor}" />

@@ -18,27 +18,33 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout Spacing="0" Margin=" 10" >
-            <views:TimerView x:Name="MyTimer" SaveTimeEvent="TimerView_SaveTimeEvent">
-            </views:TimerView>
+            <views:TimerView/>
             <Frame OutlineColor="Black" Padding="5">
-                <Label x:Name="TaskStatusLabel" Text="{Binding}" HorizontalTextAlignment="Center"/>
+                <Label Text="{Binding TasksService.SelectedTask.Comment}" HorizontalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            NumberOfTapsRequired="2"
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:TasksViewModel}}, Path=CommentUpdateCommand}"
+                            >
+                        </TapGestureRecognizer>
+                    </Label.GestureRecognizers>
+                </Label>
             </Frame>
             <Frame Padding="8" OutlineColor="Black">
-                <Picker ItemsSource="{Binding}" />
+                <Picker ItemsSource="{Binding AppSettings.UserSettings.InstanceList}" ItemDisplayBinding="{Binding Instance}" SelectedIndex="{Binding AppSettings.UserSettings.SelectedInstanceIndex}" SelectedItem="{Binding AppSettings.SelectedInstance, Mode=OneWayToSource}"/>
             </Frame>
-            <Label x:Name="TimeLabel" Text="{Binding SelectedItem}"/>
             <Frame Padding="8" OutlineColor="Gray">
                 <RefreshView Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
                     <CollectionView x:Name="ItemsListView"
-                                    ItemsSource="{Binding Items}"
+                                    ItemsSource="{Binding Tasks}"
                                     SelectionMode="Single">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <Frame Padding="0" Margin="0" BorderColor="Gray" CornerRadius="5">
                                     <FlexLayout Padding="5" x:DataType="model:TaskLocal" Direction="Row" JustifyContent="SpaceAround" AlignItems="Center">
-                                        <Label Text="{Binding TaskType}" FlexLayout.Basis="10%"/>
+                                        <Label Text="{Binding TaskType}" FlexLayout.Basis="13%"/>
                                         <Label Text="{Binding Id}"  FlexLayout.Basis="10%"/>
-                                        <Label Text="{Binding Description}"  FlexLayout.Basis="59%" LineBreakMode="WordWrap"/>
+                                        <Label Text="{Binding DescriptionTask}"  FlexLayout.Basis="56%" LineBreakMode="WordWrap"/>
                                         <Label Text="{Binding Duration, Converter={StaticResource timeConverter}}"  FlexLayout.Basis="18%" HorizontalTextAlignment="End"/>
                                         <FlexLayout.GestureRecognizers>
                                             <TapGestureRecognizer

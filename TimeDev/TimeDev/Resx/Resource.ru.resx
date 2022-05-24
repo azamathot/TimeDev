@@ -129,6 +129,12 @@
   <data name="Check" xml:space="preserve">
     <value>Проверка</value>
   </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Комментарий</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Время потраченное</value>
+  </data>
   <data name="GroupBy" xml:space="preserve">
     <value>Группировать по</value>
   </data>
@@ -156,6 +162,9 @@
   <data name="SortBy" xml:space="preserve">
     <value>Сортировать по</value>
   </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Отправить на сервер</value>
+  </data>
   <data name="Theme" xml:space="preserve">
     <value>Тема</value>
   </data>
@@ -165,8 +174,11 @@
   <data name="TrackerType" xml:space="preserve">
     <value>Тип трекера</value>
   </data>
+  <data name="URL" xml:space="preserve">
+    <value>URL</value>
+  </data>
   <data name="Username" xml:space="preserve">
-    <value>Имя пользователя</value>
+    <value>Логин</value>
   </data>
   <data name="WidgetAlwaysOnTop" xml:space="preserve">
     <value>Виджет поверх всего</value>

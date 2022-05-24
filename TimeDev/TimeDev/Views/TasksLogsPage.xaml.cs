@@ -5,13 +5,13 @@ using Xamarin.Forms.Xaml;
 namespace TimeDev.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TasksPage : ContentPage
+    public partial class TasksLogsPage : ContentPage
     {
-        TasksViewModel _viewModel;
-        public TasksPage()
+        TasksLogsViewModel _viewModel;
+        public TasksLogsPage()
         {
             InitializeComponent();
-            BindingContext = _viewModel = new TasksViewModel();
+            BindingContext = _viewModel = new TasksLogsViewModel();
         }
 
         protected override void OnAppearing()

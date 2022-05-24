@@ -16,7 +16,7 @@
                 </FlexLayout>
                 <FlexLayout Direction="Row" JustifyContent="SpaceAround" AlignItems="Center">
                     <Label Text="{x:Static resx:Resource.Theme}" FlexLayout.Basis="20%"/>
-                    <Picker ItemsSource="{Binding AppSettings.BaseSettings.Themes}" SelectedItem="{Binding AppSettings.UserSettings.SelectedTheme}" SelectedIndexChanged="Picker_SelectedIndexChanged" FlexLayout.Basis="70%"/>
+                    <Picker ItemsSource="{Binding AppSettings.BaseSettings.Themes}" SelectedItem="{Binding AppSettings.UserSettings.SelectedTheme}" FlexLayout.Basis="70%"/>
                 </FlexLayout>
                 <FlexLayout Direction="Row" JustifyContent="SpaceAround" AlignItems="Center">
                     <Label Text="{x:Static resx:Resource.WidgetAlwaysOnTop}" FlexLayout.Basis="40%"/>
@@ -26,8 +26,8 @@
             </StackLayout>
             <StackLayout Padding="10" VerticalOptions="End" >
                 <FlexLayout Direction="Row" JustifyContent="SpaceAround">
-                    <Button Text="{x:Static resx:Resource.Apply}" Command="{Binding ApplySettingsCommand}" FlexLayout.Basis="33%" CornerRadius="7"/>
-                    <Button Text="{x:Static resx:Resource.Cancel}" Command="{Binding CancelChangeCommand}" FlexLayout.Basis="33%" CornerRadius="7"/>
+                    <Button Text="{x:Static resx:Resource.Apply}" Command="{Binding ApplySettingsCommand}" FlexLayout.Basis="35%" CornerRadius="7"/>
+                    <Button Text="{x:Static resx:Resource.Cancel}" Command="{Binding CancelChangeCommand}" FlexLayout.Basis="35%" CornerRadius="7"/>
                 </FlexLayout>
             </StackLayout>
         </Grid>

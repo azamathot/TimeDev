@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TimeDev.Views.TasksLogsPage"
+             xmlns:views="clr-namespace:TimeDev.Views"
+             Title="{Binding Title}"
+             xmlns:vm="clr-namespace:TimeDev.ViewModels"  
+             xmlns:convert="clr-namespace:TimeDev.Converters"
+             xmlns:model="clr-namespace:TimeDev.Models"
+             x:DataType="vm:TasksLogsViewModel"
+             BackgroundColor="{DynamicResource PageBackgroundColor}"
+             xmlns:resx="clr-namespace:TimeDev.Resx"
+ >
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <convert:TimeSpanToStringConverter x:Key="timeConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Spacing="0" Margin=" 10" >
+            <Frame OutlineColor="Black" Padding="5">
+            </Frame>
+            <Frame Padding="8" OutlineColor="Gray">
+                <RefreshView Command="{Binding LoadTasksLogsFilesCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+                    <CollectionView x:Name="ItemsListView"
+                                    ItemsSource="{Binding TasksService.TaskLogList}"
+                                    SelectionMode="Single">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame Padding="0" Margin="0" BorderColor="Gray" CornerRadius="5">
+                                    <FlexLayout x:DataType="model:TaskLocalDto" Padding="5" Direction="Row" JustifyContent="SpaceAround" AlignItems="Center">
+                                        <Label Text="{Binding TaskLocal.TaskType}" FlexLayout.Basis="13%"/>
+                                        <Label Text="{Binding TaskLocal.Id}"  FlexLayout.Basis="10%"/>
+                                        <Label Text="{Binding TaskLocal.DescriptionTask}"  FlexLayout.Basis="23%" LineBreakMode="WordWrap"/>
+                                        <Label Text="{Binding TaskLocal.BeginTimeTask}"  FlexLayout.Basis="11%" LineBreakMode="WordWrap"/>
+                                        <Label Text="{Binding TaskLocal.Comment}"   FlexLayout.Basis="23%" LineBreakMode="WordWrap" HorizontalTextAlignment="Center"/>
+                                        <Label Text="{Binding TaskLocal.Duration, Converter={StaticResource timeConverter}}"  FlexLayout.Basis="18%" HorizontalTextAlignment="End"/>
+                                        <FlexLayout.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                NumberOfTapsRequired="2"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:TasksLogsViewModel}}, Path=ItemTapped}"
+                                                CommandParameter="{Binding .}"
+                                                >
+                                            </TapGestureRecognizer>
+                                        </FlexLayout.GestureRecognizers>
+                                    </FlexLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </RefreshView>
+            </Frame>
+            <Button Text="{x:Static resx:Resource.Submit}" Command="{Binding SubmitCommand}"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

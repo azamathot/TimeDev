@@ -9,10 +9,12 @@ namespace TimeDev.Views
     public partial class OtherSettingsPage : ContentPage
     {
         private AppSettingsViewModel _viewModel;
+
+        [System.Obsolete]
         public OtherSettingsPage()
         {
             InitializeComponent();
-            this.BindingContext = _viewModel = new AppSettingsViewModel();
+            this.BindingContext = _viewModel = AppSettingsViewModel.GetInstance();
         }
 
         private void Picker_SelectedIndexChanged(object sender, System.EventArgs e)

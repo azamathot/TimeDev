@@ -3,9 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:vm="clr-namespace:TimeDev.ViewModels"
              xmlns:convert="clr-namespace:TimeDev.Converters"
+             xmlns:service="clr-namespace:TimeDev.Services"
              x:Class="TimeDev.Views.TimerView"
              BackgroundColor="{DynamicResource PageBackgroundColor}"
              xmlns:resx="clr-namespace:TimeDev.Resx"
+             x:DataType="vm:TimerViewModel"
              >
     <ContentView.Resources>
         <ResourceDictionary>
@@ -19,11 +21,11 @@
                     </RadialGradientBrush>
                 </Setter>
                 <Style.Triggers>
-                    <DataTrigger Binding="{Binding IsRunning}" Value="True" TargetType="Button">
+                    <DataTrigger Binding="{Binding TimerService.IsRunning}" Value="True" TargetType="Button">
                         <Setter Property="Text" Value="■"/>
                         <Setter Property="TextColor" Value="Red"/>
                     </DataTrigger>
-                    <DataTrigger Binding="{Binding IsRunning}" Value="False" TargetType="Button">
+                    <DataTrigger Binding="{Binding TimerService.IsRunning}" Value="False" TargetType="Button">
                         <Setter Property="Text" Value="▶"/>
                         <Setter Property="TextColor" Value="LightGreen"/>
                     </DataTrigger>
@@ -35,8 +37,8 @@
         <Frame BorderColor="Purple" CornerRadius="7" Padding="10" HeightRequest="40" x:DataType="vm:TimerViewModel">
             <FlexLayout Direction="Row" JustifyContent="SpaceBetween" AlignItems="Center">
                 <Button CornerRadius="20" HeightRequest="45" WidthRequest="48" Padding="0,0,0,3" FontSize="Title" Command="{Binding TimerStartStopCommand}" Style="{StaticResource buttonStyle}"/>
-                <Label Text="{Binding Status}" FontSize="10" FlexLayout.Basis="50%" LineBreakMode="WordWrap"/>
-                <Label Text="{Binding Duration, Converter={StaticResource timeConverter}}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontFamily="digital-7" FontSize="Large" TextColor="GreenYellow" BackgroundColor="Brown"  FlexLayout.Basis="35%" />
+                <Label Text="{Binding TimerService.Status}" FontSize="10" FlexLayout.Basis="50%" LineBreakMode="WordWrap"/>
+                <Label Text="{Binding TimerService.Duration, Converter={StaticResource timeConverter}}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontFamily="digital-7" FontSize="Large" TextColor="GreenYellow" BackgroundColor="Brown"  FlexLayout.Basis="35%" />
             </FlexLayout>
         </Frame>
     </ContentView.Content>

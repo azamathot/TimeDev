@@ -11,8 +11,9 @@ namespace TimeDev.ViewModels
     public class BaseViewModel : INotifyPropertyChanged
     {
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
-        public IDataStore<TaskLocal> DataStoreTask => DependencyService.Get<IDataStore<TaskLocal>>();
+        //public IDataStore<TaskLocal> DataStoreTask => DependencyService.Get<IDataStore<TaskLocal>>();
         public AppSettingsManager AppSettings => DependencyService.Get<AppSettingsManager>();
+        public TasksService TasksService => DependencyService.Get<TasksService>();
 
         bool isBusy = false;
         public bool IsBusy
@@ -28,6 +29,7 @@ namespace TimeDev.ViewModels
             set { SetProperty(ref title, value); }
         }
 
+        #region INotifyPropertyChanged members
         protected bool SetProperty<T>(ref T field, T newValue,
             [CallerMemberName] string propertyName = "",
             Action onChanged = null)
@@ -41,7 +43,6 @@ namespace TimeDev.ViewModels
             return true;
         }
 
-        #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
